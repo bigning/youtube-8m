@@ -1,1 +1,1 @@
-python train.py --train_data_pattern='../data/features/trai*.tfrecord' --train_dir='../models/'
+python train.py --train_data_pattern='../data/features/trai*.tfrecord' --train_dir='../models/' --start_new_model --feature_names='mean_rgb,mean_audio' --feature_sizes='1024,128' --model='MLPModel' --regularization_penalty=0
