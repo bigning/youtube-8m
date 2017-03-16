@@ -67,10 +67,10 @@ class MLPModel(models.BaseModel):
         hidden1, vocab_size, activation_fn=tf.nn.sigmoid,
         weights_regularizer=slim.l2_regularizer(0.001), scope='fc_2')
 
-    w = [var for var in tf.global_variables() if var.op.name.endswith('weights')]
-    weights_norm = tf.reduce_sum(input_tensor=tf.concat([[tf.nn.l2_loss(i)] for i in w], 0))
+    weights_norm = tf.add_n(slim.losses.get_regularization_losses())
     
     return {"predictions": output, "regularization_loss": weights_norm}
+    #return {"predictions": output}
 
 
 class MoeModel(models.BaseModel):
